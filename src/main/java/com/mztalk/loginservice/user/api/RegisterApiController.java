@@ -1,17 +1,21 @@
 package com.mztalk.loginservice.user.api;
 
-import com.mztalk.loginservice.domain.dto.RegisterDto;
 import com.mztalk.loginservice.domain.dto.response.CheckDuplicateResponseDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.api.dto.request.ClientRegisterReqeustDto;
+import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
 import com.mztalk.loginservice.user.service.CheckService;
 import com.mztalk.loginservice.user.service.MailService;
-import com.mztalk.loginservice.user.service.RegisterService;
+import com.mztalk.loginservice.user.application.register.RegisterService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/login/register")
@@ -23,12 +27,13 @@ public class RegisterApiController {
     private final CheckService checkService;
     private final MailService mailService;
 
+    private final ClientDtoToServiceDtoMapper mapper = ClientDtoToServiceDtoMapper.getInstance();
 
     // 회원가입
     @PostMapping("/user")
     @ApiOperation(value = "회원가입", notes = "신규 회원가입을 합니다.")
-    public void registerUser(@RequestBody RegisterDto registerDto ){
-        registerService.registerUser(registerDto);
+    public void registerUser(@RequestBody @Valid ClientRegisterReqeustDto dto, BindingResult bindingResult){
+        registerService.registerUser(mapper.toServiceDtoWhenRegister(dto));
     }
 
     // 아이디 중복검사

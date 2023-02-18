@@ -6,6 +6,8 @@ import com.mztalk.loginservice.domain.dto.UserInfoDto;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.domain.entity.Chatroom;
 import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.user.repository.entity.util.Provider;
+import com.mztalk.loginservice.user.repository.entity.util.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,8 +33,12 @@ public class User {
     private String password;
     private String nickname;
     private String email;
-    private String role;
-    private String provider;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
     private String providerId;
     @CreationTimestamp
     private Timestamp createDate;
