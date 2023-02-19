@@ -5,6 +5,7 @@ import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.service.CheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CheckServiceImpl implements CheckService {
@@ -12,27 +13,35 @@ public class CheckServiceImpl implements CheckService {
     @Autowired
     private UserRepository userRepository;
 
-    public ServiceCheckResponseDto checkUsername(String username) {
-        return getResultMap(userRepository.existsByUsername(username));
-    }
+    private final String success = "available";
+    private final String fail = "unavailable";
 
-    public ServiceCheckResponseDto checkNickname(String nickname){
-        return getResultMap(userRepository.existsByNickname(nickname));
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public ServiceCheckResponseDto checkUsername(String username) {
+        return getResult(userRepository.existsByUsername(username));
     }
 
     @Override
-    public ServiceCheckResponseDto checkEmail(String email) {
-        return getResultMap(userRepository.existsByEmail(email));
+    @Transactional(rollbackFor = RuntimeException.class)
+    public ServiceCheckResponseDto checkNickname(String nickname){
+        return getResult(userRepository.existsByNickname(nickname));
     }
 
-    private ServiceCheckResponseDto getResultMap(boolean checkResult){
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public ServiceCheckResponseDto checkEmail(String email) {
+        return getResult(userRepository.existsByEmail(email));
+    }
+
+    private ServiceCheckResponseDto getResult(boolean checkResult){
 
         if(!checkResult){
 
-            return  new ServiceCheckResponseDto("available");
+            return  new ServiceCheckResponseDto(success);
         }
 
-        return  new ServiceCheckResponseDto("unavailable");
+        return  new ServiceCheckResponseDto(fail);
     }
 }
 
