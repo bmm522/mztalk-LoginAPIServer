@@ -1,11 +1,11 @@
 package com.mztalk.loginservice.user.service;
 
-import com.mztalk.loginservice.domain.dto.response.CheckDuplicateResponseDto;
+import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 
 public interface CheckService {
-    CheckDuplicateResponseDto checkUsername(String username);
+    ServiceCheckResponseDto checkUsername(String username);
 
-    CheckDuplicateResponseDto checkNickname(String nickname);
+    ServiceCheckResponseDto checkNickname(String nickname);
 
-    CheckDuplicateResponseDto checkEmail(String email);
+    ServiceCheckResponseDto checkEmail(String email);
 }

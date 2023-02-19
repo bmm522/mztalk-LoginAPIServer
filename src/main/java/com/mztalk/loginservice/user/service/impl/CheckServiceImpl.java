@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.service.impl;
 
-import com.mztalk.loginservice.domain.dto.response.CheckDuplicateResponseDto;
+import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.service.CheckService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +12,27 @@ public class CheckServiceImpl implements CheckService {
     @Autowired
     private UserRepository userRepository;
 
-    public CheckDuplicateResponseDto checkUsername(String username) {
+    public ServiceCheckResponseDto checkUsername(String username) {
         return getResultMap(userRepository.existsByUsername(username));
     }
 
-    public CheckDuplicateResponseDto checkNickname(String nickname){
+    public ServiceCheckResponseDto checkNickname(String nickname){
         return getResultMap(userRepository.existsByNickname(nickname));
     }
 
     @Override
-    public CheckDuplicateResponseDto checkEmail(String email) {
+    public ServiceCheckResponseDto checkEmail(String email) {
         return getResultMap(userRepository.existsByEmail(email));
     }
 
-    private CheckDuplicateResponseDto getResultMap(boolean checkResult){
+    private ServiceCheckResponseDto getResultMap(boolean checkResult){
 
         if(!checkResult){
 
-            return  new CheckDuplicateResponseDto("available");
+            return  new ServiceCheckResponseDto("available");
         }
 
-        return  new CheckDuplicateResponseDto("unavailable");
+        return  new ServiceCheckResponseDto("unavailable");
     }
 }
 

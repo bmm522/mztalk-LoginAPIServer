@@ -97,4 +97,8 @@ public class User {
         return new MztalkCookie(jwtResponseDto, id, nickname, status, role);
     }
 
+    public String getRoleValue(){
+        return this.role.getRole();
+    }
+
 }

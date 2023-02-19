@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.api;
 
-import com.mztalk.loginservice.domain.dto.response.CheckDuplicateResponseDto;
+import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
 import com.mztalk.loginservice.user.api.dto.request.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,20 +40,20 @@ public class RegisterApiController {
     // 아이디 중복검사
     @GetMapping("/username/{userId}")
     @ApiOperation(value = "아이디 중복검사" , notes = "기존의 아이디가 있는지 중복체크합니다.")
-    public CheckDuplicateResponseDto checkUsername(@PathVariable("userId")String username){
+    public ServiceCheckResponseDto checkUsername(@PathVariable("userId")String username){
         return checkService.checkUsername(username);
     }
 
     // 닉네임 중복검사
     @GetMapping("/nickname/{nickname}")
     @ApiOperation(value = "닉네임 중복검사", notes = "기존의 닉네임이 있는지 중복체크합니다.")
-    public CheckDuplicateResponseDto checkNickname(@PathVariable("nickname")String nickname){
+    public ServiceCheckResponseDto checkNickname(@PathVariable("nickname")String nickname){
         return  checkService.checkNickname(nickname);
     }
 
     @GetMapping("/email/{email}")
     @ApiOperation(value = "이메일 중복검사" , notes = "기존의 이메일이 있는지 중복체크합니다.")
-    public CheckDuplicateResponseDto checkEmail(@PathVariable("email")String email){
+    public ServiceCheckResponseDto checkEmail(@PathVariable("email")String email){
         return checkService.checkEmail(email);
     }
 

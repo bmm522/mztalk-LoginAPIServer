@@ -57,11 +57,11 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 
             switch (principalDetails.getUser().getRole()){
 
-                case "ROLE_ADMIN": response.addHeader(LoginStatus.STATUS, "Admin Login"); break;
+                case ROLE_ADMIN : response.addHeader(LoginStatus.STATUS, "Admin Login"); break;
 
-                case "out" : response.addHeader(LoginStatus.STATUS, "Out User"); break;
+                case out : response.addHeader(LoginStatus.STATUS, "Out User"); break;
 
-                case "N" : response.addHeader(LoginStatus.STATUS, "Fail Login"); break;
+                case N : response.addHeader(LoginStatus.STATUS, "Fail Login"); break;
 
                 default: response.addHeader(LoginStatus.STATUS, "Login Success"); break;
 
@@ -83,7 +83,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 
         response.addHeader(JwtProperties.HEADER_STRING, jwtResponseDto.getJwtToken());
         response.addHeader("RefreshToken", jwtResponseDto.getRefreshToken());
-        response.addHeader("UserRole", principalDetails.getUser().getRole());
+        response.addHeader("UserRole", principalDetails.getUser().getRoleValue());
         response.addHeader("UserNo", String.valueOf(principalDetails.getUser().getId()));
         response.addHeader("UserNickname", URLEncoder.encode(principalDetails.getUser().getNickname(),"UTF-8"));
 
