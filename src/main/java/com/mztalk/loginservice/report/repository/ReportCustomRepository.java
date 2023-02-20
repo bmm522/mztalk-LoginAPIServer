@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.repository;
+package com.mztalk.loginservice.report.repository;
 
 import com.mztalk.loginservice.domain.entity.Report;
 

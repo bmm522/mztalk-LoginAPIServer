@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.service;
+package com.mztalk.loginservice.report.application;
 
 import com.mztalk.loginservice.domain.dto.request.ReportRequestDto;
 

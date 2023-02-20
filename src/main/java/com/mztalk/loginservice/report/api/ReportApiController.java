@@ -1,10 +1,10 @@
-package com.mztalk.loginservice.controller;
+package com.mztalk.loginservice.report.api;
 
 import com.mztalk.loginservice.domain.dto.request.ReportRequestDto;
 import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.service.InsertReportService;
-import com.mztalk.loginservice.service.SelectReportService;
-import com.mztalk.loginservice.service.UpdateReportService;
+import com.mztalk.loginservice.report.application.InsertReportService;
+import com.mztalk.loginservice.report.application.SelectReportService;
+import com.mztalk.loginservice.report.application.UpdateReportService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

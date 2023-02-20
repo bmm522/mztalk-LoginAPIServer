@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.controller;
+package com.mztalk.loginservice.global.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
