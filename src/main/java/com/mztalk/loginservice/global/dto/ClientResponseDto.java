@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.api.dto.response;
+package com.mztalk.loginservice.global.dto;
 
 import lombok.Builder;
 import lombok.Getter;

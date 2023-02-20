@@ -1,12 +1,12 @@
-package com.mztalk.loginservice.controller;
+package com.mztalk.loginservice.chat.api;
 
 import com.mztalk.loginservice.domain.dto.Result;
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNoRequestDto;
 import com.mztalk.loginservice.domain.dto.response.ChatResultResponseDto;
-import com.mztalk.loginservice.service.InsertChatService;
-import com.mztalk.loginservice.service.SelectChatService;
-import com.mztalk.loginservice.service.UpdateChatService;
+import com.mztalk.loginservice.chat.application.InsertChatService;
+import com.mztalk.loginservice.chat.application.SelectChatService;
+import com.mztalk.loginservice.chat.application.UpdateChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.global.exception;
 
-import com.mztalk.loginservice.user.api.dto.response.ClientResponseDto;
-import com.mztalk.loginservice.user.api.dto.response.Code;
+import com.mztalk.loginservice.global.dto.ClientResponseDto;
+import com.mztalk.loginservice.global.dto.Code;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

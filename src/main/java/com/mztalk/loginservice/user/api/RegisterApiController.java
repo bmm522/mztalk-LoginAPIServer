@@ -2,7 +2,7 @@ package com.mztalk.loginservice.user.api;
 
 import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
-import com.mztalk.loginservice.user.api.dto.request.ClientRegisterReqeustDto;
+import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
 import com.mztalk.loginservice.user.service.CheckService;
 import com.mztalk.loginservice.user.service.MailService;
@@ -12,7 +12,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 

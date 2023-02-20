@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.domain.dto.request;
 
 
-import com.mztalk.loginservice.domain.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import com.mztalk.loginservice.user.repository.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

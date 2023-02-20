@@ -1,6 +1,6 @@
-package com.mztalk.loginservice.repository;
+package com.mztalk.loginservice.chat.repository;
 
-import com.mztalk.loginservice.domain.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
-package com.mztalk.loginservice.service.impl;
+package com.mztalk.loginservice.chat.application;
 
-import com.mztalk.loginservice.repository.ChatroomRepository;
-import com.mztalk.loginservice.service.UpdateChatService;
+import com.mztalk.loginservice.chat.repository.ChatroomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

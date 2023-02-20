@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mztalk.loginservice.domain.cookie.MztalkCookie;
 import com.mztalk.loginservice.domain.dto.UserInfoDto;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
-import com.mztalk.loginservice.domain.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import com.mztalk.loginservice.domain.entity.Report;
 import com.mztalk.loginservice.user.repository.entity.util.Provider;
 import com.mztalk.loginservice.user.repository.entity.util.Role;

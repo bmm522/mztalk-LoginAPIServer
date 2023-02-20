@@ -1,7 +1,6 @@
 package com.mztalk.loginservice.user.api.mapper;
 
-import com.mztalk.loginservice.user.api.dto.response.ClientResponseDto;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.mztalk.loginservice.global.dto.ClientResponseDto;
 
 public class ServiceDtoToControllerDtoMapper {
 

@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.domain.dto.response;
 
-import com.mztalk.loginservice.domain.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import lombok.*;
 
 

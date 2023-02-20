@@ -1,12 +1,11 @@
-package com.mztalk.loginservice.service.impl;
+package com.mztalk.loginservice.chat.application;
 
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNoRequestDto;
 import com.mztalk.loginservice.domain.dto.response.ChatResultResponseDto;
-import com.mztalk.loginservice.domain.entity.Chatroom;
-import com.mztalk.loginservice.repository.ChatroomRepository;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.ChatroomRepository;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.service.InsertChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

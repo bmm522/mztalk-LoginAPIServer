@@ -1,7 +1,7 @@
-package com.mztalk.loginservice.repository;
+package com.mztalk.loginservice.chat.repository;
 
 
-import com.mztalk.loginservice.domain.entity.Chatroom;
+import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 
 import java.util.List;
 

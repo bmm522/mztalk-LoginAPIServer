@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.api.mapper;
 
-import com.mztalk.loginservice.user.api.dto.request.ClientRegisterReqeustDto;
+import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
 import com.mztalk.loginservice.user.repository.entity.util.Provider;
 import com.mztalk.loginservice.user.repository.entity.util.Role;

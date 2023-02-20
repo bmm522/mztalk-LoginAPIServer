@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.api.dto.request;
+package com.mztalk.loginservice.user.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;

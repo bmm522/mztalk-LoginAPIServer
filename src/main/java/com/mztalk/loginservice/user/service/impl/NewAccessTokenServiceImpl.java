@@ -6,7 +6,7 @@ import com.google.gson.JsonParser;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.exception.UserNoNotFoundException;
-import com.mztalk.loginservice.properties.JwtProperties;
+import com.mztalk.loginservice.user.properties.JwtProperties;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.service.NewAccessTokenService;
 import io.jsonwebtoken.Claims;

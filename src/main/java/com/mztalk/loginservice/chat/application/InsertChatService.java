@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.service;
+package com.mztalk.loginservice.chat.application;
 
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChatOfUserNoRequestDto;
