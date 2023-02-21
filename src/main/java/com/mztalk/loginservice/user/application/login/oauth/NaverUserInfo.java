@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.social;
+package com.mztalk.loginservice.user.application.login.oauth;
 
 import com.mztalk.loginservice.user.repository.entity.User;
 

@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.auth;
+package com.mztalk.loginservice.user.application.login.auth;
 
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.repository.UserRepository;

@@ -1,11 +1,7 @@
-package com.mztalk.loginservice.user.oauth;
+package com.mztalk.loginservice.user.application.login.oauth;
 
-import com.mztalk.loginservice.user.auth.PrincipalDetails;
+import com.mztalk.loginservice.user.application.login.auth.PrincipalDetails;
 import com.mztalk.loginservice.user.repository.entity.User;
-import com.mztalk.loginservice.domain.social.GoogleUserInfo;
-import com.mztalk.loginservice.domain.social.KakaoUserInfo;
-import com.mztalk.loginservice.domain.social.NaverUserInfo;
-import com.mztalk.loginservice.domain.social.SocialUserInfo;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

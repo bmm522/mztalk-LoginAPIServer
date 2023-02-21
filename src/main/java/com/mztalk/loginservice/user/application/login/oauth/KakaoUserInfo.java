@@ -1,45 +1,45 @@
-package com.mztalk.loginservice.domain.social;
+package com.mztalk.loginservice.user.application.login.oauth;
 
 import com.mztalk.loginservice.user.repository.entity.User;
 
 import java.util.Map;
 
-public class GoogleUserInfo implements SocialUserInfo{
+public class KakaoUserInfo implements SocialUserInfo{
 
     private Map<String, Object> userInfoMap;
 
-    public GoogleUserInfo(Map<String,Object> userInfoMap){
+
+    public KakaoUserInfo(Map<String, Object> userInfoMap) {
         this.userInfoMap = userInfoMap;
     }
 
     @Override
     public String getProviderId() {
-        return (String)userInfoMap.get("sub");
+        return String.valueOf(userInfoMap.get("id"));
     }
 
     @Override
     public String getProvider() {
-        return "GOOGLE";
+        return "KAKAO";
     }
 
     @Override
     public String getEmail() {
-        return (String)userInfoMap.get("email");
+        return (String)((Map)userInfoMap.get("kakao_account")).get("email");
     }
 
     @Override
     public User toUserEntity() {
         return User.builder()
-                .username("GOOGLE_"+(String) userInfoMap.get("sub"))
+                .username("KAKAO_"+ String.valueOf(userInfoMap.get("id")))
                 .password("null")
                 .nickname("null")
                 .email("null")
                 .role("ROLE_USER")
-                .provider("GOOGLE")
-                .providerId((String) userInfoMap.get("sub"))
+                .provider("KAKAO")
+                .providerId(String.valueOf(userInfoMap.get("id")))
                 .status("Y")
                 .reportCount(0L)
                 .build();
     }
-
 }

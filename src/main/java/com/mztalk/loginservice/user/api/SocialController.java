@@ -2,7 +2,7 @@ package com.mztalk.loginservice.user.api;
 
 import com.mztalk.loginservice.domain.dto.request.FirstSocialRequestDto;
 import com.mztalk.loginservice.domain.dto.response.JwtFirstSocialResponseDto;
-import com.mztalk.loginservice.user.oauth.UpdateNicknameSocialLoginService;
+import com.mztalk.loginservice.user.application.login.oauth.UpdateNicknameSocialLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

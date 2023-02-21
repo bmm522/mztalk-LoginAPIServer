@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.oauth;
+package com.mztalk.loginservice.user.application.login.oauth;
 
 import com.mztalk.loginservice.domain.dto.request.FirstSocialRequestDto;
 import com.mztalk.loginservice.domain.dto.response.JwtFirstSocialResponseDto;
@@ -26,7 +26,7 @@ public class UpdateNicknameSocialLoginService {
 
         User newUser = userRepository.findByUsername(firstSocialRequestDto.getUsername());
 
-        return new JwtFirstSocialResponseDto(getJwtTokenFactoryInstance().getJwtToken(newUser),String.valueOf(newUser.getId()),newUser.getNickname(),newUser.getRole());
+        return new JwtFirstSocialResponseDto(getJwtTokenFactoryInstance().getJwtToken(newUser),String.valueOf(newUser.getId()),newUser.getNickname(),newUser.getRoleValue());
 
 
 

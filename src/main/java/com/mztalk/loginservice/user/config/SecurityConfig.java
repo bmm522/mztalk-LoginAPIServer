@@ -1,8 +1,8 @@
 package com.mztalk.loginservice.user.config;
 
-import com.mztalk.loginservice.user.oauth.SocialLoginSuccessHandler;
-import com.mztalk.loginservice.user.oauth.PrincipalSocialOAuth2UserService;
-import com.mztalk.loginservice.user.auth.LoginAuthenticationFilter;
+import com.mztalk.loginservice.user.application.login.oauth.SocialLoginSuccessHandler;
+import com.mztalk.loginservice.user.application.login.oauth.PrincipalSocialOAuth2UserService;
+import com.mztalk.loginservice.user.application.login.auth.LoginAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

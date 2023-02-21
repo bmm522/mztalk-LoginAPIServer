@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.auth;
+package com.mztalk.loginservice.user.application.login.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
