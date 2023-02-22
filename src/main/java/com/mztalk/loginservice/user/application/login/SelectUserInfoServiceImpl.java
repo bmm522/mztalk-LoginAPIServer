@@ -1,9 +1,7 @@
 package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.user.application.login.dto.response.ServiceMaliciousUserResponseDto;
-import com.mztalk.loginservice.domain.dto.Result;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
-import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceSearchUsernameResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDtos;
 import com.mztalk.loginservice.user.application.login.mapper.EntityToServiceDtoMapper;
 import com.mztalk.loginservice.user.repository.entity.User;
@@ -30,15 +28,15 @@ public class SelectUserInfoServiceImpl implements SelectUserInfoService {
 
     private final EntityToServiceDtoMapper mapper = EntityToServiceDtoMapper.getInstance();
     @Override
-    public SearchUsernameResponseDto searchUsername(String email) {
+    public ServiceSearchUsernameResponseDto searchUsername(String email) {
 
         User user = userRepository.findByEmail(email);
 
         if(user == null){
-            return new SearchUsernameResponseDto("notExist");
+            return new ServiceSearchUsernameResponseDto("notExist");
         }
 
-        return new SearchUsernameResponseDto(user.getUsername());
+        return new ServiceSearchUsernameResponseDto(user.getUsername());
     }
 
 

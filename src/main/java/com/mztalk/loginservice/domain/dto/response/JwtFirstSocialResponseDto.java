@@ -1,6 +1,8 @@
 package com.mztalk.loginservice.domain.dto.response;
 
 
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
+
 public class JwtFirstSocialResponseDto {
 
     private String jwtToken;

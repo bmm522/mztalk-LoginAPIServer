@@ -1,7 +1,6 @@
-package com.mztalk.loginservice.user.service.impl;
+package com.mztalk.loginservice.user.application.login;
 
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
-import com.mztalk.loginservice.user.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

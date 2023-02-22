@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.factory;
 
-import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 
 import javax.servlet.http.Cookie;

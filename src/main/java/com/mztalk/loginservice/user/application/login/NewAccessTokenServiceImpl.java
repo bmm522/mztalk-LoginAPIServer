@@ -1,14 +1,12 @@
-package com.mztalk.loginservice.user.service.impl;
+package com.mztalk.loginservice.user.application.login;
 
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.user.repository.entity.User;
-import com.mztalk.loginservice.user.exception.UserNoNotFoundException;
 import com.mztalk.loginservice.user.properties.JwtProperties;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.service.NewAccessTokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +27,8 @@ public class NewAccessTokenServiceImpl implements NewAccessTokenService {
     @Override
     public JwtResponseDto getNewAccessToken(String refreshToken) {
 
-
         User user = userRepository.findById(Long.parseLong(asString(getAllClaims(refreshToken.substring(13)),"id")))
-                .orElseThrow(()->new UserNoNotFoundException("Not Found User"));
+                .orElseThrow(()->new RuntimeException("Not Found User"));
 
        return  getJwtTokenFactoryInstance().getJwtToken(user);
     }

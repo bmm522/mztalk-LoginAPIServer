@@ -4,7 +4,6 @@ import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

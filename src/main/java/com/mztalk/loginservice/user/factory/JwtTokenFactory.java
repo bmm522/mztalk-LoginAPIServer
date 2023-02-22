@@ -2,7 +2,7 @@ package com.mztalk.loginservice.user.factory;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.properties.JwtProperties;
 import lombok.extern.slf4j.Slf4j;

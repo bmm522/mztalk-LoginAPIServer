@@ -1,6 +1,5 @@
 package com.mztalk.loginservice.user.api;
 
-import com.mztalk.loginservice.domain.dto.Result;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewEmailRequestDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewNicknameRequestDto;
@@ -8,12 +7,12 @@ import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
 import com.mztalk.loginservice.global.dto.ClientResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
-import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
-import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceSearchUsernameResponseDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
 import com.mztalk.loginservice.user.application.login.dto.request.*;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDtos;
-import com.mztalk.loginservice.user.service.NewAccessTokenService;
+import com.mztalk.loginservice.user.application.login.NewAccessTokenService;
 import com.mztalk.loginservice.user.application.login.SelectUserInfoService;
 import com.mztalk.loginservice.user.application.login.UpdateUserInfoService;
 import com.mztalk.loginservice.user.application.login.MailServiceByFindPwdService;
@@ -87,15 +86,9 @@ public class LoginApiController {
 
     @ApiOperation(value = "이메일로 아이디 찾기", notes = "해당 이메일로 등록된 유저의 아이디를 가져옵니다.")
     @GetMapping("/username/{email}")
-    public SearchUsernameResponseDto searchUsername(@PathVariable("email") String email){
-        return selectUserInfoService.searchUsername(email);
-    }
-
-    @ApiOperation(value = "토큰 재발급", notes = "토큰 유효시간이 끝났을 시, 리프레시 토큰을 이용해서 재발급해줍니다.")
-    @GetMapping("/access-token")
-    @ApiIgnore
-    public JwtResponseDto getNewAccessToken(@RequestParam("refreshToken")String refreshToken){
-        return newAccessTokenService.getNewAccessToken(refreshToken);
+    public ResponseEntity<?> searchUsername(@PathVariable("email") String email){
+        ServiceSearchUsernameResponseDto dto =  selectUserInfoService.searchUsername(email);
+        return new ResponseEntity<>(success("이메일로 등록된 유저의 아이디 가져오기 성공", dto), HttpStatus.OK);
     }
 
 
@@ -138,6 +131,13 @@ public class LoginApiController {
         ServiceUpdateStatusRequestDto serviceDto = mapper.toServiceDtoWhenUpdateStatus(id, status);
         updateUserInfoService.updateUserStatus(serviceDto);
         return new ResponseEntity<>(updateSuccess("번호로 유저의 status 변경 성공"),HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "토큰 재발급", notes = "토큰 유효시간이 끝났을 시, 리프레시 토큰을 이용해서 재발급해줍니다.")
+    @GetMapping("/access-token")
+    @ApiIgnore
+    public JwtResponseDto getNewAccessToken(@RequestParam("refreshToken")String refreshToken){
+        return newAccessTokenService.getNewAccessToken(refreshToken);
     }
 
 

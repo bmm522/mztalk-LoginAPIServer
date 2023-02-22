@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.domain.cookie;
 
-import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import lombok.*;
 
 import javax.servlet.http.Cookie;
