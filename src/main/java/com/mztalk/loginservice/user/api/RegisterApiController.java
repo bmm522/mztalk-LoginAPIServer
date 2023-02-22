@@ -5,7 +5,7 @@ import com.mztalk.loginservice.user.application.register.dto.response.ServiceChe
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
-import com.mztalk.loginservice.user.service.CheckService;
+import com.mztalk.loginservice.user.application.register.CheckService;
 import com.mztalk.loginservice.user.service.MailService;
 import com.mztalk.loginservice.user.application.register.RegisterService;
 

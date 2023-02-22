@@ -5,17 +5,23 @@ import com.mztalk.loginservice.domain.dto.UserInfoDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewEmailRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.domain.dto.request.UpdatePasswordRequestDto;
+import com.mztalk.loginservice.global.dto.ClientResponseDto;
+import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
+import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 import com.mztalk.loginservice.user.service.NewAccessTokenService;
 import com.mztalk.loginservice.user.service.SelectUserInfoService;
-import com.mztalk.loginservice.user.service.UpdateUserInfoService;
-import com.mztalk.loginservice.user.service.impl.MailServiceByFindPwdService;
+import com.mztalk.loginservice.user.application.login.UpdateUserInfoService;
+import com.mztalk.loginservice.user.application.login.MailServiceByFindPwdService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -33,37 +39,43 @@ public class LoginApiController {
 
     private final NewAccessTokenService newAccessTokenService;
 
+    private final ClientDtoToServiceDtoMapper mapper = ClientDtoToServiceDtoMapper.getInstance();
 
     @GetMapping("/auth-code")
     @ApiIgnore
     public EmailAuthResponseDto getEmailAuthCodeByFindPwd(@RequestParam("email")String email,
                                                           @RequestParam("username")String username){
-
-        return mailServiceByFindPwdService.getEmailAuthCodeByFindPwd(email, username);
+        ServiceEmailAuthRequestDto dto = mapper.toServiceDtoWhenEamilAuth(email, username);
+        return mailServiceByFindPwdService.getEmailAuthCodeByFindPwd(dto);
     }
 
     @PatchMapping("/password")
     @ApiIgnore
-    public int updatePassword(@RequestBody UpdatePasswordRequestDto updatePasswordRequestDto){
-        return updateUserInfoService.updatePassword(updatePasswordRequestDto);
+    public ResponseEntity<?> updatePassword(@RequestBody ClientUpdatePasswordRequestDto clientDto){
+        ServiceUpdatePasswordRequestDto serviceDto = mapper.toServiceDtoWhenUpdatePassword(clientDto);
+        updateUserInfoService.updatePassword(serviceDto);
+        return new ResponseEntity<>(updateSuccess("비밀번호 변경 성공"), HttpStatus.OK);
     }
 
     @ApiOperation(value = "닉네임으로 상태값 변경", notes = "해당 닉네임의 유저의 status를 N으로 변경합니다.")
     @PatchMapping("/status/{nickname}")
-    public int updateStatus(@PathVariable("nickname")String nickname){
-        return updateUserInfoService.updateStatus(nickname);
+    public ResponseEntity<?> updateStatus(@PathVariable("nickname")String nickname){
+        updateUserInfoService.updateStatus(nickname);
+        return new ResponseEntity<>(updateSuccess("닉네임으로 status 변경 성공"), HttpStatus.OK);
     }
 
     @ApiOperation(value="유저 등급 vip로 변경", notes = "해당 번호의 유저의 등급을 vip로 변경합니다.")
     @PatchMapping("/role/vip/{userNo}")
-    public int updateRoleChangeToVip(@PathVariable("userNo")Long id){
-        return updateUserInfoService.updateRoleChangeToVip(id);
+    public ResponseEntity<?> updateRoleChangeToVip(@PathVariable("userNo")Long id){
+        updateUserInfoService.updateRoleChangeToVip(id);
+        return new ResponseEntity<>(updateSuccess("번호로 유저의 등급 vip로 변경 성공"),HttpStatus.OK);
     }
 
     @ApiOperation(value="유저 등급 일반으로 변경", notes = "해당 번호의 유저의 등급을 일반등급으로 변경합니다.")
     @PatchMapping("/role/user/{userNo}")
-    public int updateRoleChangeToUser(@PathVariable("userNo")Long id){
-        return updateUserInfoService.updateRoleChangeToUser(id);
+    public ResponseEntity<?> updateRoleChangeToUser(@PathVariable("userNo")Long id){
+        updateUserInfoService.updateRoleChangeToUser(id);
+        return new ResponseEntity<>(updateSuccess("번호로 유저의 등급 일반으로 변경 성공"),HttpStatus.OK);
     }
 
     @ApiOperation(value="유저 정보 가져오기", notes = "해당 번호의 유저의 정보를 가져옵니다.")
@@ -95,14 +107,16 @@ public class LoginApiController {
 
     @ApiOperation(value = "닉네임 변경", notes = "해당 유저 번호의 유저의 닉네임을 변경합니다.")
     @PatchMapping("/user/nickname")
-    public int changeNewNickname(@RequestBody ChangeNewNicknameRequestDto changeNewNicknameRequestDto){
-        return updateUserInfoService.changeNewNickname(changeNewNicknameRequestDto);
+    public ResponseEntity<?> changeNewNickname(@RequestBody ChangeNewNicknameRequestDto changeNewNicknameRequestDto){
+        updateUserInfoService.changeNewNickname(changeNewNicknameRequestDto);
+        return new ResponseEntity<>(updateSuccess("번호로 유저의 닉네임 변경 성공"),HttpStatus.OK);
     }
 
     @ApiOperation(value = "이메일 변경", notes = "해당 유저 번호의 유저 이메일을 변경합니다.")
     @PatchMapping("/user/email")
-    public int changeNewEmail(@RequestBody ChangeNewEmailRequestDto changeNewEmailRequestDto){
-        return updateUserInfoService.changeNewEmail(changeNewEmailRequestDto.getUserNo(),changeNewEmailRequestDto.getEmail());
+    public ResponseEntity<?> changeNewEmail(@RequestBody ChangeNewEmailRequestDto changeNewEmailRequestDto){
+        updateUserInfoService.changeNewEmail(changeNewEmailRequestDto.getUserNo(),changeNewEmailRequestDto.getEmail());
+        return new ResponseEntity<>(updateSuccess("번호로 유저의 이메일 변경 성공"),HttpStatus.OK);
     }
 
     @ApiOperation(value = "악성 유저 리스트 가져오기", notes = "신고 횟수가 3회 이상인 악성 유저의 리스트를 가져옵니다.")
@@ -113,9 +127,27 @@ public class LoginApiController {
 
     @ApiOperation(value = "유저 상태 변경", notes = "해당 유저의 status를 변경합니다.")
     @PatchMapping("/user/status")
-    public long updateUserStatus(@RequestParam("status")String status, @RequestParam("userNo")long id){
-        return updateUserInfoService.updateUserStatus(status, id);
+    public ResponseEntity<?> updateUserStatus(@RequestParam("status")String status,
+                                              @RequestParam("userNo")long id){
+        updateUserInfoService.updateUserStatus(status, id);
+        return new ResponseEntity<>(updateSuccess("번호로 유저의 status 변경 성공"),HttpStatus.OK);
     }
 
 
+    private ClientResponseDto<?> success(String msg, Object dto){
+
+        return ClientResponseDto.builder()
+                .code(1)
+                .msg(msg)
+                .body(dto)
+                .build();
+    }
+
+    private ClientResponseDto<?> updateSuccess(String msg){
+
+        return ClientResponseDto.builder()
+                .code(1)
+                .msg(msg)
+                .build();
+    }
 }

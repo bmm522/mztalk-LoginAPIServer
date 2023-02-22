@@ -1,15 +1,17 @@
-package com.mztalk.loginservice.user.service.impl;
+package com.mztalk.loginservice.user.application.login;
 
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.domain.dto.request.UpdatePasswordRequestDto;
 import com.mztalk.loginservice.global.exception.ChangeFailException;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.service.UpdateUserInfoService;
+import com.mztalk.loginservice.user.repository.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -19,11 +21,15 @@ public class UpdateUserInfoServiceImpl implements UpdateUserInfoService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Override
-    public int updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto) {
-       return userRepository.updatePassword(updatePasswordRequestDto.getUsername(), bCryptPasswordEncoder.encode(updatePasswordRequestDto.getPassword()));
-    }
 
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public int updatePassword(ServiceUpdatePasswordRequestDto dto) {
+       User user = getUserByUsername(dto.getUsername());
+       String newPassword = bCryptPasswordEncoder.encode(dto.getPassword());
+       user.updatePassword(newPassword);
+       return 1;
+    }
     @Override
     public int updateStatus(String nickname) {
         return userRepository.updateStatus(nickname);
@@ -70,4 +76,11 @@ public class UpdateUserInfoServiceImpl implements UpdateUserInfoService {
     }
 
 
+
+    private User getUserByUsername(String username){
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByUsername(username))
+                .orElseThrow(() -> new RuntimeException("Not Exists Username"));
+
+        return userOptional.get();
+    }
 }

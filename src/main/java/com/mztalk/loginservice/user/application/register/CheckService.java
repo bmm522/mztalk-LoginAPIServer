@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.user.service;
+package com.mztalk.loginservice.user.application.register;
 
 import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 

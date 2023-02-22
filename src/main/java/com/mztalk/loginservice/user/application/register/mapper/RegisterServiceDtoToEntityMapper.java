@@ -3,13 +3,13 @@ package com.mztalk.loginservice.user.application.register.mapper;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 
-public class ServiceDtoToEntityMapper {
+public class RegisterServiceDtoToEntityMapper {
 
-    private static final ServiceDtoToEntityMapper serviceDtoTiEntityMapper = new ServiceDtoToEntityMapper();
+    private static final RegisterServiceDtoToEntityMapper serviceDtoTiEntityMapper = new RegisterServiceDtoToEntityMapper();
 
-    private ServiceDtoToEntityMapper(){}
+    private RegisterServiceDtoToEntityMapper(){}
 
-    public static ServiceDtoToEntityMapper getInstance(){
+    public static RegisterServiceDtoToEntityMapper getInstance(){
         return serviceDtoTiEntityMapper;
     }
 

@@ -1,11 +1,12 @@
-package com.mztalk.loginservice.user.service;
+package com.mztalk.loginservice.user.application.login;
 
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.domain.dto.request.UpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 
 public interface UpdateUserInfoService {
-    int updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto);
+    int updatePassword(ServiceUpdatePasswordRequestDto dto);
 
 //    int updateMentorStatus(String nickname);
 

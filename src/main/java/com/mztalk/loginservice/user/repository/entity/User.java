@@ -101,4 +101,8 @@ public class User {
         return this.role.getRole();
     }
 
+    public User updatePassword(String password){
+        this.password = password;
+        return this;
+    }
 }

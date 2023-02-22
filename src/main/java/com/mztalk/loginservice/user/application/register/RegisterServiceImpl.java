@@ -1,10 +1,8 @@
 package com.mztalk.loginservice.user.application.register;
 
-import com.mztalk.loginservice.domain.dto.RegisterDto;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
-import com.mztalk.loginservice.user.application.register.mapper.ServiceDtoToEntityMapper;
+import com.mztalk.loginservice.user.application.register.mapper.RegisterServiceDtoToEntityMapper;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.application.register.RegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,7 +17,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final ServiceDtoToEntityMapper mapper = ServiceDtoToEntityMapper.getInstance();
+    private final RegisterServiceDtoToEntityMapper mapper = RegisterServiceDtoToEntityMapper.getInstance();
 
     @Override
     public void registerUser(ServiceRegisterReqeustDto dto) {

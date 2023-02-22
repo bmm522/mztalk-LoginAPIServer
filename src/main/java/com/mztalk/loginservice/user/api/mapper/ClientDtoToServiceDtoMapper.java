@@ -1,6 +1,9 @@
 package com.mztalk.loginservice.user.api.mapper;
 
 import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
+import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
 import com.mztalk.loginservice.user.repository.entity.util.Provider;
 import com.mztalk.loginservice.user.repository.entity.util.Role;
@@ -28,4 +31,20 @@ public class ClientDtoToServiceDtoMapper {
                 .reportCount(0L)
                 .build();
     }
+
+    public ServiceEmailAuthRequestDto toServiceDtoWhenEamilAuth(String email, String username){
+        return ServiceEmailAuthRequestDto.builder()
+                .email(email)
+                .username(username)
+                .build();
+    }
+
+    public ServiceUpdatePasswordRequestDto toServiceDtoWhenUpdatePassword(ClientUpdatePasswordRequestDto dto){
+        return ServiceUpdatePasswordRequestDto.builder()
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .build();
+    }
+
+
 }

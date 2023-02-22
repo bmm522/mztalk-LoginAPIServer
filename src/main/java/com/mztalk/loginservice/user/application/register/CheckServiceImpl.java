@@ -1,8 +1,7 @@
-package com.mztalk.loginservice.user.service.impl;
+package com.mztalk.loginservice.user.application.register;
 
 import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.service.CheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

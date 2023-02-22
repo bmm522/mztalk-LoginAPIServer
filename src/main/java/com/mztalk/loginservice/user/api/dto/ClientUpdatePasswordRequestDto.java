@@ -1,11 +1,11 @@
-package com.mztalk.loginservice.domain.dto.request;
+package com.mztalk.loginservice.user.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class UpdatePasswordRequestDto {
+public class ClientUpdatePasswordRequestDto {
 
     private String username;
     private String password;
