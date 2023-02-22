@@ -115,4 +115,14 @@ public class User {
         this.role = role;
         return this;
     }
+
+    public User updateNickname(String nickname){
+        this.nickname = nickname;
+        return this;
+    }
+
+    public User updateEmail(String email){
+        this.email = email;
+        return this;
+    }
 }

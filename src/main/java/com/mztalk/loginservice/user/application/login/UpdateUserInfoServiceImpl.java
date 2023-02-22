@@ -1,10 +1,7 @@
 package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
-import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.global.exception.ChangeFailException;
-import com.mztalk.loginservice.user.application.login.dto.request.ServiceChangeNewPasswordRequestDto;
-import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.api.dto.ClientChangeNewNicknameRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.*;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.repository.entity.util.Role;
@@ -72,18 +69,26 @@ public class UpdateUserInfoServiceImpl implements UpdateUserInfoService {
     }
 
     @Override
-    public int changeNewNickname(ChangeNewNicknameRequestDto changeNewNicknameRequestDto) {
-        return userRepository.updateNickname(Long.parseLong(changeNewNicknameRequestDto.getUserNo()),changeNewNicknameRequestDto.getNickname());
+    @Transactional(rollbackFor = RuntimeException.class)
+    public int changeNewNickname(ServiceChangeNewNicknameRequestDto dto) {
+        User user = getUserById(dto.getId());
+        user.updateNickname(dto.getNickname());
+        return 1;
     }
 
     @Override
-    public int changeNewEmail(String userNo, String email) {
-        return userRepository.updateEmail(Long.parseLong(userNo), email);
+    @Transactional(rollbackFor = RuntimeException.class)
+    public int changeNewEmail(ServiceChangeNewEmailReqeustDto dto) {
+        User user = getUserById(dto.getId());
+        user.updateEmail(dto.getEmail());
+        return 1;
     }
 
     @Override
-    public long updateUserStatus(String status, long id) {
-        return userRepository.updateUserStatus(status, id);
+    public long updateUserStatus(ServiceUpdateStatusRequestDto dto) {
+        User user = getUserById(dto.getId());
+        user.updateStatus(dto.getStatus());
+        return 1;
     }
 
 

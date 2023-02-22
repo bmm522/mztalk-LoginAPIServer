@@ -1,11 +1,7 @@
 package com.mztalk.loginservice.user.api.mapper;
 
-import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
-import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
-import com.mztalk.loginservice.user.application.login.dto.request.ServiceChangeNewPasswordRequestDto;
-import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
-import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.api.dto.*;
+import com.mztalk.loginservice.user.application.login.dto.request.*;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
 import com.mztalk.loginservice.user.repository.entity.util.Provider;
 import com.mztalk.loginservice.user.repository.entity.util.Role;
@@ -56,5 +52,25 @@ public class ClientDtoToServiceDtoMapper {
                 .build();
     }
 
+    public ServiceChangeNewNicknameRequestDto toServiceDtoWhenChangeNewNickname(ClientChangeNewNicknameRequestDto dto){
+        return ServiceChangeNewNicknameRequestDto.builder()
+                .userNo(dto.getUserNo())
+                .nickname(dto.getNickname())
+                .build();
+    }
 
+
+    public ServiceChangeNewEmailReqeustDto toServiceDtoWhenChangeNewEamil(ClientChangeNewEmailRequestDto dto) {
+        return ServiceChangeNewEmailReqeustDto.builder()
+                .id(dto.getUserNo())
+                .email(dto.getEmail())
+                .build();
+    }
+
+    public ServiceUpdateStatusRequestDto toServiceDtoWhenUpdateStatus(long id, String status) {
+        return ServiceUpdateStatusRequestDto.builder()
+                .id(id)
+                .status(status)
+                .build();
+    }
 }
