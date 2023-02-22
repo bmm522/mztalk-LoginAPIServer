@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.dto.response;
+package com.mztalk.loginservice.user.application.login.dto.response;
 
 import com.mztalk.loginservice.user.repository.entity.User;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MaliciousUserResponseDto {
+public class ServiceMaliciousUserResponseDto {
 
     private String userNo;
     private String username;
@@ -18,7 +18,7 @@ public class MaliciousUserResponseDto {
     private String createDate;
     private String reportCount;
 
-    public MaliciousUserResponseDto(User user){
+    public ServiceMaliciousUserResponseDto(User user){
         this.userNo = String.valueOf(user.getId());
         this.username = user.getUsername();
         this.nickname = user.getNickname();

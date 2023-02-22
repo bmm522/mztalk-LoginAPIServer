@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.user.api;
 
 import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.domain.dto.UserInfoDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewEmailRequestDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
@@ -12,8 +12,9 @@ import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
 import com.mztalk.loginservice.user.application.login.dto.request.*;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDtos;
 import com.mztalk.loginservice.user.service.NewAccessTokenService;
-import com.mztalk.loginservice.user.service.SelectUserInfoService;
+import com.mztalk.loginservice.user.application.login.SelectUserInfoService;
 import com.mztalk.loginservice.user.application.login.UpdateUserInfoService;
 import com.mztalk.loginservice.user.application.login.MailServiceByFindPwdService;
 import io.swagger.annotations.Api;
@@ -79,8 +80,9 @@ public class LoginApiController {
 
     @ApiOperation(value="유저 정보 가져오기", notes = "해당 번호의 유저의 정보를 가져옵니다.")
     @GetMapping("user-info/{id}")
-    public UserInfoDto getUserInfoByUserNo(@PathVariable("id")String id){
-        return selectUserInfoService.getUserInfoByUserNo(id);
+    public ResponseEntity<?> getUserInfoByUserNo(@PathVariable("id")String id){
+        ServiceUserInfoResponseDto dto =  selectUserInfoService.getUserInfoByUserNo(id);
+        return new ResponseEntity<>(success("유저 정보 가져오기 성공", dto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "이메일로 아이디 찾기", notes = "해당 이메일로 등록된 유저의 아이디를 가져옵니다.")
@@ -124,8 +126,9 @@ public class LoginApiController {
 
     @ApiOperation(value = "악성 유저 리스트 가져오기", notes = "신고 횟수가 3회 이상인 악성 유저의 리스트를 가져옵니다.")
     @GetMapping("/malicious-user")
-    public Result<?> getMaliciousUser(){
-        return selectUserInfoService.getMaliciousUser();
+    public ResponseEntity<?> getMaliciousUser(){
+        ServiceUserInfoResponseDtos dtos =  selectUserInfoService.getMaliciousUser();
+        return new ResponseEntity<>(success("악성 유저 리스트 가져오기 성공", dtos), HttpStatus.OK);
     }
 
     @ApiOperation(value = "유저 상태 변경", notes = "해당 유저의 status를 변경합니다.")

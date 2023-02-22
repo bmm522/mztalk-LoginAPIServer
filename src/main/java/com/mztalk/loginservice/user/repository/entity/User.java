@@ -2,7 +2,7 @@ package com.mztalk.loginservice.user.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mztalk.loginservice.domain.cookie.MztalkCookie;
-import com.mztalk.loginservice.domain.dto.UserInfoDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import com.mztalk.loginservice.domain.entity.Report;
@@ -58,8 +58,8 @@ public class User {
         this.nickname = nickname;
     }
 
-    public UserInfoDto toUserInfoDto(String imageUrl) {
-        return UserInfoDto.builder()
+    public ServiceUserInfoResponseDto toUserInfoDto(String imageUrl) {
+        return ServiceUserInfoResponseDto.builder()
                 .userId(String.valueOf(id))
                 .username(username)
                 .nickname(nickname)
@@ -74,8 +74,8 @@ public class User {
                 .build();
     }
 
-    public UserInfoDto toUserInfoDto() {
-        return UserInfoDto.builder()
+    public ServiceUserInfoResponseDto toUserInfoDto() {
+        return ServiceUserInfoResponseDto.builder()
                 .userId(String.valueOf(id))
                 .username(username)
                 .nickname(nickname)
@@ -99,6 +99,11 @@ public class User {
 
     public String getRoleValue(){
         return this.role.getRole();
+    }
+
+
+    public String getProviderValue() {
+        return this.provider.getProvider();
     }
 
     public User updatePassword(String password){
@@ -125,4 +130,5 @@ public class User {
         this.email = email;
         return this;
     }
+
 }

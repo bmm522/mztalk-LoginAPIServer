@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.domain.dto.response;
 
-import com.mztalk.loginservice.domain.dto.UserInfoDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.domain.entity.Report;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,17 +17,17 @@ public class ReportResponseDto {
     private String reportContent;
     private String boardId;
     private String serviceName;
-    private UserInfoDto user;
+    private ServiceUserInfoResponseDto user;
     private String path;
 
     private String reportStatus;
 
-    public ReportResponseDto(Report report, UserInfoDto userInfoDto){
+    public ReportResponseDto(Report report, ServiceUserInfoResponseDto serviceUserInfoResponseDto){
         this.reportTitle = report.getReportTitle();
         this.reportContent = report.getReportContent();
         this.boardId = report.getBoardId();
         this.serviceName = report.getServiceName();
-        this.user = userInfoDto;
+        this.user = serviceUserInfoResponseDto;
         this.path = report.getPath();
         this.reportStatus=report.getReportStatus();
     }

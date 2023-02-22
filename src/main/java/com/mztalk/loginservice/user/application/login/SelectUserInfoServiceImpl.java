@@ -1,13 +1,13 @@
-package com.mztalk.loginservice.user.service.impl;
+package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.domain.dto.response.MaliciousUserResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceMaliciousUserResponseDto;
 import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.domain.dto.UserInfoDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDtos;
+import com.mztalk.loginservice.user.application.login.mapper.EntityToServiceDtoMapper;
 import com.mztalk.loginservice.user.repository.entity.User;
-import com.mztalk.loginservice.user.exception.UserNoNotFoundException;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.user.service.SelectUserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -15,17 +15,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.NoResultException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class SelectUserInfoServiceImpl implements SelectUserInfoService {
 
     private final UserRepository userRepository;
+
+    private final EntityToServiceDtoMapper mapper = EntityToServiceDtoMapper.getInstance();
     @Override
     public SearchUsernameResponseDto searchUsername(String email) {
 
@@ -40,9 +43,9 @@ public class SelectUserInfoServiceImpl implements SelectUserInfoService {
 
 
     @Override
-    public UserInfoDto getUserInfoByUserNo(String id) {
-        User user = userRepository.findById(Long.parseLong(id))
-                .orElseThrow(()->new UserNoNotFoundException("Not Found User No"));
+    @Transactional(rollbackFor = RuntimeException.class)
+    public ServiceUserInfoResponseDto getUserInfoByUserNo(String id) {
+        User user =  getUserById(Long.parseLong(id));
 
         String imageUrl = "";
 
@@ -63,33 +66,27 @@ public class SelectUserInfoServiceImpl implements SelectUserInfoService {
             imageUrl = "https://mztalk-resource-server.s3.ap-northeast-2.amazonaws.com/7276284f-daed-4b0d-9ca3-7a7bb1930138-profile.png";
         }
 
-        return user.toUserInfoDto(imageUrl);
+        return mapper.toUserInfoDto(imageUrl, user);
     }
 
 
     @Override
-    public UserInfoDto getUserInfoByNickname(String nickname) {
-        User user = null;
-        try {
-            user = userRepository.findByNickname(nickname);
-        } catch (NoResultException e){
-            throw new UserNoNotFoundException("Not Found User Nickname");
-        }
-        return user.toUserInfoDto();
-    }
+    public ServiceUserInfoResponseDtos getMaliciousUser() {
 
-    @Override
-    public Result<?> getMaliciousUser() {
-        List<MaliciousUserResponseDto> maliciousUserResponseDtoList = new ArrayList<>();
+        List<ServiceUserInfoResponseDto> dtos = userRepository.getMaliciousUser().stream()
+                .map((user) -> mapper.toUserInfoDto(user))
+                .collect(Collectors.toList());
 
-        for(User user : userRepository.getMaliciousUser()){
-            maliciousUserResponseDtoList.add(new MaliciousUserResponseDto(user));
-        }
-
-        return new Result<>(maliciousUserResponseDtoList);
+        return ServiceUserInfoResponseDtos.builder().users(dtos).build();
     }
 
 
+    private User getUserById(Long id) {
+        Optional<User> userOptional = Optional.of(userRepository.findById(id))
+                .orElseThrow(()-> new RuntimeException("번호에 해당하는 유저가 없습니다."));
+
+        return userOptional.get();
+    }
 
 
 }

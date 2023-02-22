@@ -3,17 +3,17 @@ package com.mztalk.loginservice.user.application.register.mapper;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 
-public class RegisterServiceDtoToEntityMapper {
+public class ServiceDtoToEntityMapper {
 
-    private static final RegisterServiceDtoToEntityMapper serviceDtoTiEntityMapper = new RegisterServiceDtoToEntityMapper();
+    private static final ServiceDtoToEntityMapper serviceDtoTiEntityMapper = new ServiceDtoToEntityMapper();
 
-    private RegisterServiceDtoToEntityMapper(){}
+    private ServiceDtoToEntityMapper(){}
 
-    public static RegisterServiceDtoToEntityMapper getInstance(){
+    public static ServiceDtoToEntityMapper getInstance(){
         return serviceDtoTiEntityMapper;
     }
 
-    public User toEntity(ServiceRegisterReqeustDto dto){
+    public User toEntityWhenRegister(ServiceRegisterReqeustDto dto){
         return User.builder()
                 .username(dto.getUsername())
                 .password(dto.getPassword())

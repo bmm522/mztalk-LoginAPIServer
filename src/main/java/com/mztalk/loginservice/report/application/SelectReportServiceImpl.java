@@ -4,10 +4,9 @@ import com.google.gson.JsonParser;
 import com.mztalk.loginservice.domain.dto.response.EditReponseDto;
 import com.mztalk.loginservice.domain.dto.response.ReportResponseDto;
 import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.domain.dto.UserInfoDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.domain.entity.Report;
 import com.mztalk.loginservice.report.repository.ReportRepository;
-import com.mztalk.loginservice.report.application.SelectReportService;
 import lombok.RequiredArgsConstructor;
 
 import org.json.JSONObject;
@@ -34,7 +33,7 @@ public class SelectReportServiceImpl implements SelectReportService {
         List<ReportResponseDto> reportResponseDtoList = new ArrayList<>();
 
         for(Report report : reportList){
-            reportResponseDtoList.add(new ReportResponseDto(report, new UserInfoDto(report.getUser())));
+            reportResponseDtoList.add(new ReportResponseDto(report, new ServiceUserInfoResponseDto(report.getUser())));
         }
 
         return new Result<>(reportResponseDtoList);
