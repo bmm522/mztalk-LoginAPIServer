@@ -1,8 +1,8 @@
 package com.mztalk.loginservice.user.application.login;
 
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
-import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
-import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceChangeNewPasswordRequestDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 
 public interface UpdateUserInfoService {
@@ -16,7 +16,7 @@ public interface UpdateUserInfoService {
 
     int updateRoleChangeToUser(Long id);
 
-    int changeNewPassword(ChangeNewPasswordReqeustDto changeNewPasswordReqeustDto);
+    int changeNewPassword(ServiceChangeNewPasswordRequestDto dto);
 
     int changeNewNickname(ChangeNewNicknameRequestDto changeNewNicknameRequestDto);
 

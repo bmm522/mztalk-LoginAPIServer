@@ -105,4 +105,14 @@ public class User {
         this.password = password;
         return this;
     }
+
+    public User updateStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public User updateRole(Role role) {
+        this.role = role;
+        return this;
+    }
 }

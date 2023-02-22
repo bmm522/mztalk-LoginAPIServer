@@ -14,4 +14,5 @@ public class ServiceUpdatePasswordRequestDto {
         this.username = username;
         this.password = password;
     }
+
 }

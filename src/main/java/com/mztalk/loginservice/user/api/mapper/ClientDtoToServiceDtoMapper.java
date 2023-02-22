@@ -1,7 +1,9 @@
 package com.mztalk.loginservice.user.api.mapper;
 
+import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
 import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceChangeNewPasswordRequestDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 import com.mztalk.loginservice.user.application.register.dto.reqeust.ServiceRegisterReqeustDto;
@@ -43,6 +45,14 @@ public class ClientDtoToServiceDtoMapper {
         return ServiceUpdatePasswordRequestDto.builder()
                 .username(dto.getUsername())
                 .password(dto.getPassword())
+                .build();
+    }
+
+    public ServiceChangeNewPasswordRequestDto toServiceDtoWhenChangeNewPassword(ClientChangeNewPasswordReqeustDto dto){
+        return ServiceChangeNewPasswordRequestDto.builder()
+                .id(dto.getId())
+                .prePassword(dto.getPrePassword())
+                .newPassword(dto.getNewPassword())
                 .build();
     }
 

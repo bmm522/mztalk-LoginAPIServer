@@ -4,13 +4,14 @@ import com.mztalk.loginservice.domain.dto.Result;
 import com.mztalk.loginservice.domain.dto.UserInfoDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewEmailRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
-import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
+import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
 import com.mztalk.loginservice.global.dto.ClientResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
 import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
 import com.mztalk.loginservice.domain.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.domain.dto.response.SearchUsernameResponseDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
+import com.mztalk.loginservice.user.application.login.dto.request.ServiceChangeNewPasswordRequestDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceUpdatePasswordRequestDto;
 import com.mztalk.loginservice.user.service.NewAccessTokenService;
@@ -101,8 +102,10 @@ public class LoginApiController {
     // 비밀번호 변경, body : prePassword, newPassword, id
     @ApiOperation(value = "새로운 비밀번호로 변경", notes = "기존의 비밀번호를 새로운 비밀번호로 변경합니다.")
     @PatchMapping("/new-password")
-    public int changeNewPassword(@RequestBody ChangeNewPasswordReqeustDto changeNewPasswordReqeustDto){
-        return updateUserInfoService.changeNewPassword(changeNewPasswordReqeustDto);
+    public ResponseEntity<?> changeNewPassword(@RequestBody ClientChangeNewPasswordReqeustDto clientDto){
+        ServiceChangeNewPasswordRequestDto serviceDto = mapper.toServiceDtoWhenChangeNewPassword(clientDto);
+        updateUserInfoService.changeNewPassword(serviceDto);
+        return new ResponseEntity<>(updateSuccess("비밀번호 변경 성공"), HttpStatus.OK);
     }
 
     @ApiOperation(value = "닉네임 변경", notes = "해당 유저 번호의 유저의 닉네임을 변경합니다.")

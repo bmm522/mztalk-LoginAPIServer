@@ -11,15 +11,19 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long>, UserCustomRepository {
     Optional<User> findByUsername(String username);
+
+    Optional<User> findByNickname(String nickname);
+
+    Optional<User> findById(Long id);
     boolean existsByUsername(String username);
     boolean existsByNickname(String nickname);
     boolean existsByEmail(String email);
     User findByEmail(String email);
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE User u set u.password = :password where u.username = :username")
-    int updatePassword(@Param(value="username") String username,@Param(value="password") String password);
+//    @Transactional
+//    @Modifying(clearAutomatically = true)
+//    @Query("UPDATE User u set u.password = :password where u.username = :username")
+//    int updatePassword(@Param(value="username") String username,@Param(value="password") String password);
 
 
 
@@ -33,7 +37,7 @@ public interface UserRepository extends JpaRepository<User, Long>, UserCustomRep
     @Query("UPDATE User u set u.status = 'N' where u.nickname = :nickname")
     int updateStatus(@Param(value="nickname")String nickname);
 
-    User findByNickname(String nickname);
+//    User findByNickname(String nickname);
 
 
 
