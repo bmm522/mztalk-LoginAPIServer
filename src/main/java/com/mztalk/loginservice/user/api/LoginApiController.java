@@ -36,7 +36,9 @@ public class LoginApiController {
 
     @GetMapping("/auth-code")
     @ApiIgnore
-    public EmailAuthResponseDto getEmailAuthCodeByFindPwd(@RequestParam("email")String email, @RequestParam("username")String username){
+    public EmailAuthResponseDto getEmailAuthCodeByFindPwd(@RequestParam("email")String email,
+                                                          @RequestParam("username")String username){
+
         return mailServiceByFindPwdService.getEmailAuthCodeByFindPwd(email, username);
     }
 

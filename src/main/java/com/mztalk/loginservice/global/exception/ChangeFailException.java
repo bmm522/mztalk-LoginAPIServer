@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.exception;
+package com.mztalk.loginservice.global.exception;
 
 public class ChangeFailException extends RuntimeException{
     public ChangeFailException() {

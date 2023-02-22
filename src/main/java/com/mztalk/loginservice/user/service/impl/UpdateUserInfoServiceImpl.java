@@ -3,7 +3,7 @@ package com.mztalk.loginservice.user.service.impl;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.domain.dto.request.ChangeNewPasswordReqeustDto;
 import com.mztalk.loginservice.domain.dto.request.UpdatePasswordRequestDto;
-import com.mztalk.loginservice.exception.ChangeFailException;
+import com.mztalk.loginservice.global.exception.ChangeFailException;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.service.UpdateUserInfoService;
 import lombok.RequiredArgsConstructor;

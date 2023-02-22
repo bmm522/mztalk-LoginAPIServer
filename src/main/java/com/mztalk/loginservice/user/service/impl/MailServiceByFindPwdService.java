@@ -6,6 +6,7 @@ import com.mztalk.loginservice.user.repository.UserRepository;
 import com.mztalk.loginservice.user.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +15,7 @@ public class MailServiceByFindPwdService {
     private final MailService mailService;
     private final UserRepository userRepository;
 
+    @Transactional(rollbackFor = RuntimeException.class)
     public EmailAuthResponseDto getEmailAuthCodeByFindPwd(String email, String username) {
 
         User user = userRepository.findByUsername(username);
@@ -21,6 +23,6 @@ public class MailServiceByFindPwdService {
         if(user.getEmail().equals(email)){
             return mailService.getAuthCodeOfEmail(email);
         }
-        return new EmailAuthResponseDto( "Not Exists Username");
+        throw new RuntimeException("Not Exists Username");
     }
 }

@@ -16,4 +16,5 @@ public class ClientResponseDto<T> {
         this.msg = msg;
         this.body = body;
     }
+
 }
