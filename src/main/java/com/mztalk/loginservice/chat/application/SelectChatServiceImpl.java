@@ -1,7 +1,6 @@
 package com.mztalk.loginservice.chat.application;
 
-import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.domain.dto.response.ChatResponseDto;
+import com.mztalk.loginservice.global.dto.Result;
 import com.mztalk.loginservice.chat.repository.entity.Chatroom;
 import com.mztalk.loginservice.chat.repository.ChatroomRepository;
 import com.mztalk.loginservice.user.repository.UserRepository;

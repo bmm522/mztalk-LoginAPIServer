@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.dto;
+package com.mztalk.loginservice.global.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

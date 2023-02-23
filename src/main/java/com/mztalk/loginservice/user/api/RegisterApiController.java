@@ -2,7 +2,7 @@ package com.mztalk.loginservice.user.api;
 
 import com.mztalk.loginservice.global.dto.ClientResponseDto;
 import com.mztalk.loginservice.user.application.register.dto.response.ServiceCheckResponseDto;
-import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceEmailAuthResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientRegisterReqeustDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
 import com.mztalk.loginservice.user.application.register.CheckService;
@@ -67,7 +67,7 @@ public class RegisterApiController {
     @GetMapping("/auth-code/{email}")
     @ApiOperation(value = "이메일 코드", notes = "작성한 이메일로 랜덤 코드가 발송됩니다.")
     public ResponseEntity<?> getAuthCodeOfEmail(@PathVariable("email")String email){
-        EmailAuthResponseDto dto =  mailService.getAuthCodeOfEmail(email);
+        ServiceEmailAuthResponseDto dto =  mailService.getAuthCodeOfEmail(email);
         return new ResponseEntity<>(success("이메일로 랜덤코드를 발송했습니다.", dto), HttpStatus.OK);
     }
 

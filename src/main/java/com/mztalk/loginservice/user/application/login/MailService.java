@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceEmailAuthResponseDto;
 
 public interface MailService {
-    EmailAuthResponseDto getAuthCodeOfEmail(String email);
+    ServiceEmailAuthResponseDto getAuthCodeOfEmail(String email);
 }

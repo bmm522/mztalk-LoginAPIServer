@@ -1,7 +1,6 @@
 package com.mztalk.loginservice.user.application.login.oauth;
 
 import com.mztalk.loginservice.user.application.login.auth.PrincipalDetails;
-import com.mztalk.loginservice.domain.cookie.MztalkCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;

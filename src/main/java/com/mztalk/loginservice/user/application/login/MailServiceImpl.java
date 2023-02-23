@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceEmailAuthResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class MailServiceImpl implements MailService {
     @Value("${mail.mailPw}")
     private String mailPw;
     @Override
-    public EmailAuthResponseDto getAuthCodeOfEmail(String email) {
+    public ServiceEmailAuthResponseDto getAuthCodeOfEmail(String email) {
 
         String authCode = makeRandomNumber();
 
@@ -35,10 +35,10 @@ public class MailServiceImpl implements MailService {
 
         if(isValidEmail(email)) {
             sendMail("Your EmailAuthCode.",contents, email);
-            return new EmailAuthResponseDto(authCode);
+            return new ServiceEmailAuthResponseDto(authCode);
         }
 
-        return new EmailAuthResponseDto("It`s not an appropriate email format");
+        return new ServiceEmailAuthResponseDto("It`s not an appropriate email format");
     }
 
     public void sendMail(String subejct, String body, Object obj) {

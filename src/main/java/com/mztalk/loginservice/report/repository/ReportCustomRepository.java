@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.report.repository;
 
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.repository.entity.Report;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.entity;
+package com.mztalk.loginservice.report.repository.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

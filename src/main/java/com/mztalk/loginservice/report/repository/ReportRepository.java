@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.report.repository;
 
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.repository.entity.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

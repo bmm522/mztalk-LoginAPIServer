@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.dto.response;
+package com.mztalk.loginservice.chat.application;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

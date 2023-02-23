@@ -1,10 +1,9 @@
 package com.mztalk.loginservice.report.application;
 
-import com.mztalk.loginservice.domain.dto.request.ReportRequestDto;
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.api.dto.ReportRequestDto;
+import com.mztalk.loginservice.report.repository.entity.Report;
 import com.mztalk.loginservice.report.repository.ReportRepository;
 import com.mztalk.loginservice.user.repository.UserRepository;
-import com.mztalk.loginservice.report.application.InsertReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

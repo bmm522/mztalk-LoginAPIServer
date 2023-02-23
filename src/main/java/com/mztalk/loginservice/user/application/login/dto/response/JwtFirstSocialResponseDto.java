@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.dto.response;
+package com.mztalk.loginservice.user.application.login.dto.response;
 
 
 import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;

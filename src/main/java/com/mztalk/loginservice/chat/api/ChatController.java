@@ -1,9 +1,9 @@
 package com.mztalk.loginservice.chat.api;
 
-import com.mztalk.loginservice.domain.dto.Result;
-import com.mztalk.loginservice.domain.dto.request.ChatOfUserNicknameRequestDto;
-import com.mztalk.loginservice.domain.dto.request.ChatOfUserNoRequestDto;
-import com.mztalk.loginservice.domain.dto.response.ChatResultResponseDto;
+import com.mztalk.loginservice.global.dto.Result;
+import com.mztalk.loginservice.chat.application.ChatOfUserNicknameRequestDto;
+import com.mztalk.loginservice.chat.application.ChatOfUserNoRequestDto;
+import com.mztalk.loginservice.chat.application.ChatResultResponseDto;
 import com.mztalk.loginservice.chat.application.InsertChatService;
 import com.mztalk.loginservice.chat.application.SelectChatService;
 import com.mztalk.loginservice.chat.application.UpdateChatService;

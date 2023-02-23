@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.user.application.login.oauth;
 
-import com.mztalk.loginservice.domain.dto.request.FirstSocialRequestDto;
-import com.mztalk.loginservice.domain.dto.response.JwtFirstSocialResponseDto;
+import com.mztalk.loginservice.user.api.dto.ClientFirstSocialRequestDto;
+import com.mztalk.loginservice.user.application.login.dto.response.JwtFirstSocialResponseDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import static com.mztalk.loginservice.user.factory.JwtTokenFactory.getJwtTokenFa
 public class UpdateNicknameSocialLoginService {
 
     private final UserRepository userRepository;
-    public JwtFirstSocialResponseDto setFirstLoginForSocialLoginUser(FirstSocialRequestDto firstSocialRequestDto) throws IOException {
+    public JwtFirstSocialResponseDto setFirstLoginForSocialLoginUser(ClientFirstSocialRequestDto firstSocialRequestDto) throws IOException {
 
         User preUser = userRepository.findByUsername(firstSocialRequestDto.getUsername());
         preUser.changeNickname(firstSocialRequestDto.getNewNickname());

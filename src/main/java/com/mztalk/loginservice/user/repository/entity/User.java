@@ -1,11 +1,11 @@
 package com.mztalk.loginservice.user.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mztalk.loginservice.domain.cookie.MztalkCookie;
+import com.mztalk.loginservice.user.application.login.oauth.MztalkCookie;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.chat.repository.entity.Chatroom;
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.repository.entity.Report;
 import com.mztalk.loginservice.user.repository.entity.util.Provider;
 import com.mztalk.loginservice.user.repository.entity.util.Role;
 import lombok.AllArgsConstructor;

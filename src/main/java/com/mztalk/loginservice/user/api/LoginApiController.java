@@ -6,7 +6,7 @@ import com.mztalk.loginservice.user.api.dto.ClientChangeNewNicknameRequestDto;
 import com.mztalk.loginservice.user.api.dto.ClientChangeNewPasswordReqeustDto;
 import com.mztalk.loginservice.global.dto.ClientResponseDto;
 import com.mztalk.loginservice.user.api.dto.ClientUpdatePasswordRequestDto;
-import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceEmailAuthResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceSearchUsernameResponseDto;
 import com.mztalk.loginservice.user.api.mapper.ClientDtoToServiceDtoMapper;
@@ -42,10 +42,11 @@ public class LoginApiController {
 
     @GetMapping("/auth-code")
     @ApiIgnore
-    public EmailAuthResponseDto getEmailAuthCodeByFindPwd(@RequestParam("email")String email,
-                                                          @RequestParam("username")String username){
-        ServiceEmailAuthRequestDto dto = mapper.toServiceDtoWhenEamilAuth(email, username);
-        return mailServiceByFindPwdService.getEmailAuthCodeByFindPwd(dto);
+    public ResponseEntity<?> getEmailAuthCodeByFindPwd(@RequestParam("email")String email,
+                                                                 @RequestParam("username")String username){
+        ServiceEmailAuthRequestDto requestDto = mapper.toServiceDtoWhenEamilAuth(email, username);
+        ServiceEmailAuthResponseDto responseDto = mailServiceByFindPwdService.getEmailAuthCodeByFindPwd(requestDto);
+         return new ResponseEntity<>(success("이메일로 인증번호 전송 성공", responseDto), HttpStatus.OK);
     }
 
     @PatchMapping("/password")
@@ -136,8 +137,10 @@ public class LoginApiController {
     @ApiOperation(value = "토큰 재발급", notes = "토큰 유효시간이 끝났을 시, 리프레시 토큰을 이용해서 재발급해줍니다.")
     @GetMapping("/access-token")
     @ApiIgnore
-    public JwtResponseDto getNewAccessToken(@RequestParam("refreshToken")String refreshToken){
-        return newAccessTokenService.getNewAccessToken(refreshToken);
+    public ResponseEntity<?> getNewAccessToken(@RequestParam("refreshToken")String refreshToken){
+        JwtResponseDto dto =  newAccessTokenService.getNewAccessToken(refreshToken);
+        return new ResponseEntity<>(success("토큰 재발급 성공", dto), HttpStatus.OK);
+
     }
 
 

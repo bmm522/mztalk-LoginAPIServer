@@ -1,7 +1,7 @@
 package com.mztalk.loginservice.report.api;
 
-import com.mztalk.loginservice.domain.dto.request.ReportRequestDto;
-import com.mztalk.loginservice.domain.dto.Result;
+import com.mztalk.loginservice.report.api.dto.ReportRequestDto;
+import com.mztalk.loginservice.global.dto.Result;
 import com.mztalk.loginservice.report.application.InsertReportService;
 import com.mztalk.loginservice.report.application.SelectReportService;
 import com.mztalk.loginservice.report.application.UpdateReportService;

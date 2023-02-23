@@ -1,6 +1,6 @@
-package com.mztalk.loginservice.domain.dto.request;
+package com.mztalk.loginservice.report.api.dto;
 
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.repository.entity.Report;
 import com.mztalk.loginservice.user.repository.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

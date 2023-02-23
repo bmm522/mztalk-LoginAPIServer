@@ -1,11 +1,11 @@
 package com.mztalk.loginservice.report.application;
 
 import com.google.gson.JsonParser;
-import com.mztalk.loginservice.domain.dto.response.EditReponseDto;
-import com.mztalk.loginservice.domain.dto.response.ReportResponseDto;
-import com.mztalk.loginservice.domain.dto.Result;
+import com.mztalk.loginservice.report.api.dto.EditReponseDto;
+import com.mztalk.loginservice.report.api.dto.ReportResponseDto;
+import com.mztalk.loginservice.global.dto.Result;
 import com.mztalk.loginservice.user.application.login.dto.response.ServiceUserInfoResponseDto;
-import com.mztalk.loginservice.domain.entity.Report;
+import com.mztalk.loginservice.report.repository.entity.Report;
 import com.mztalk.loginservice.report.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.chat.application;
 
-import com.mztalk.loginservice.domain.dto.Result;
+import com.mztalk.loginservice.global.dto.Result;
 
 public interface SelectChatService {
     Result<?> getChatRoomListOfAuction(long userNo);

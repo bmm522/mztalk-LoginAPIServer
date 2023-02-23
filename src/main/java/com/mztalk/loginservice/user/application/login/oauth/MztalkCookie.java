@@ -1,4 +1,4 @@
-package com.mztalk.loginservice.domain.cookie;
+package com.mztalk.loginservice.user.application.login.oauth;
 
 import com.mztalk.loginservice.user.application.login.dto.response.JwtResponseDto;
 import lombok.*;

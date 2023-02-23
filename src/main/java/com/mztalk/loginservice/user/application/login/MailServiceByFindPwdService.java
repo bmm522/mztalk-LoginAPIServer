@@ -1,6 +1,6 @@
 package com.mztalk.loginservice.user.application.login;
 
-import com.mztalk.loginservice.domain.dto.response.EmailAuthResponseDto;
+import com.mztalk.loginservice.user.application.login.dto.response.ServiceEmailAuthResponseDto;
 import com.mztalk.loginservice.user.application.login.dto.request.ServiceEmailAuthRequestDto;
 import com.mztalk.loginservice.user.repository.entity.User;
 import com.mztalk.loginservice.user.repository.UserRepository;
@@ -18,7 +18,7 @@ public class MailServiceByFindPwdService {
     private final UserRepository userRepository;
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public EmailAuthResponseDto getEmailAuthCodeByFindPwd(ServiceEmailAuthRequestDto dto) {
+    public ServiceEmailAuthResponseDto getEmailAuthCodeByFindPwd(ServiceEmailAuthRequestDto dto) {
 
         Optional<User> userOptional = Optional.ofNullable(userRepository.findByUsername(dto.getUsername()))
                 .orElseThrow(()->new RuntimeException("Not Exists Username"));
